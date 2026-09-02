@@ -1,114 +1,1126 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3739336939215893"
-     crossorigin="anonymous"></script>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-E9WCJCCDY6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
+  <meta charset="UTF-8">
 
-  gtag('config', 'G-E9WCJCCDY6');
-</script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="description" content="URL Shorter - Create short and easy-to-share URLs.">
+  <meta
+    name="description"
+    content="URL Shorter - Create short and easy-to-share URLs."
+  >
 
-<title>URL Shorter</title>
+  <title>URL Shorter</title>
 
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-html{
-  scroll-behavior:smooth;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:#f7f9fc;
-  color:#172033;
-  line-height:1.6;
-}
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f5f7fb;
+      color: #172033;
+      line-height: 1.6;
+    }
 
-header{
-  background:#fff;
-  border-bottom:1px solid #e6eaf0;
-  position:sticky;
-  top:0;
-  z-index:1000;
-}
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
-.nav{
-  max-width:1100px;
-  margin:auto;
-  padding:17px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+    /* HEADER */
+    header {
+      width: 100%;
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
 
-.logo{
-  text-decoration:none;
-  font-size:24px;
-  font-weight:800;
-  color:#111827;
-}
+    .nav-container {
+      max-width: 1100px;
+      margin: auto;
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
 
-.logo span{
-  color:#2563eb;
-}
+    .logo {
+      font-size: 24px;
+      font-weight: 800;
+      color: #2563eb;
+      white-space: nowrap;
+    }
 
-nav{
-  display:flex;
-  gap:25px;
-}
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
 
-nav a{
-  text-decoration:none;
-  color:#4b5563;
-  font-weight:600;
-  font-size:15px;
-}
+    nav a {
+      font-size: 15px;
+      font-weight: 600;
+      color: #4b5563;
+      transition: 0.2s;
+    }
 
-nav a:hover{
-  color:#2563eb;
-}
+    nav a:hover {
+      color: #2563eb;
+    }
 
-.hero{
-  min-height:650px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  padding:80px 20px;
-  background:linear-gradient(135deg,#eef5ff,#fff);
-}
+    /* HERO */
+    .hero {
+      min-height: 560px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 70px 20px;
+      background:
+        radial-gradient(circle at top right, #dbeafe, transparent 35%),
+        linear-gradient(180deg, #ffffff, #f5f7fb);
+    }
 
-.hero-content{
-  width:100%;
-  max-width:850px;
-  text-align:center;
-}
+    .hero-content {
+      width: 100%;
+      max-width: 800px;
+      text-align: center;
+    }
 
-.badge{
-  display:inline-block;
-  background:#dbeafe;
-  color:#1d4ed8;
-  padding:7px 15px;
-  border-radius:50px;
-  font-size:13px;
-  font-weight:700;
-  margin-bottom:20px;
-}
+    .hero h1 {
+      font-size: clamp(38px, 7vw, 64px);
+      line-height: 1.1;
+      margin-bottom: 18px;
+      color: #111827;
+    }
 
-h1{
-  font-size:clamp(42px,8vw,75px);
+    .hero h1 span {
+      color: #2563eb;
+    }
+
+    .hero p {
+      max-width: 650px;
+      margin: 0 auto 35px;
+      color: #6b7280;
+      font-size: 18px;
+    }
+
+    /* SHORTENER */
+    .shortener-box {
+      max-width: 720px;
+      margin: auto;
+      padding: 10px;
+      background: #ffffff;
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
+      display: flex;
+      gap: 10px;
+    }
+
+    #urlInput {
+      flex: 1;
+      min-width: 0;
+      border: none;
+      outline: none;
+      padding: 17px 16px;
+      font-size: 16px;
+      background: transparent;
+      color: #111827;
+    }
+
+    #urlInput::placeholder {
+      color: #9ca3af;
+    }
+
+    #shortenBtn {
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 0 25px;
+      border-radius: 12px;
+      background: #2563eb;
+      color: #ffffff;
+      font-size: 16px;
+      font-weight: 700;
+      transition: 0.2s;
+      min-height: 52px;
+    }
+
+    #shortenBtn:hover {
+      background: #1d4ed8;
+      transform: translateY(-1px);
+    }
+
+    #shortenBtn:disabled {
+      background: #93c5fd;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    /* RESULT */
+    #result {
+      display: none;
+      max-width: 720px;
+      margin: 22px auto 0;
+      padding: 18px;
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 14px;
+      text-align: left;
+    }
+
+    .result-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #374151;
+      margin-bottom: 8px;
+    }
+
+    .result-row {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    #shortUrl {
+      flex: 1;
+      min-width: 0;
+      padding: 12px;
+      background: #ffffff;
+      border: 1px solid #dbeafe;
+      border-radius: 9px;
+      color: #2563eb;
+      word-break: break-all;
+      font-weight: 600;
+    }
+
+    .result-btn {
+      border: none;
+      cursor: pointer;
+      padding: 12px 16px;
+      border-radius: 9px;
+      font-weight: 700;
+      transition: 0.2s;
+    }
+
+    #copyBtn {
+      background: #2563eb;
+      color: white;
+    }
+
+    #copyBtn:hover {
+      background: #1d4ed8;
+    }
+
+    #openBtn {
+      background: #111827;
+      color: white;
+    }
+
+    #openBtn:hover {
+      background: #000000;
+    }
+
+    /* ERROR */
+    #errorMessage {
+      display: none;
+      max-width: 720px;
+      margin: 15px auto 0;
+      padding: 13px 16px;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      color: #b91c1c;
+      border-radius: 10px;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    /* SECTIONS */
+    section {
+      padding: 80px 20px;
+    }
+
+    .section-container {
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 34px;
+      margin-bottom: 15px;
+      color: #111827;
+    }
+
+    .section-description {
+      max-width: 700px;
+      margin: 0 auto 40px;
+      text-align: center;
+      color: #6b7280;
+    }
+
+    /* HISTORY */
+    #historySection {
+      background: #ffffff;
+    }
+
+    #historyList {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    .history-empty {
+      text-align: center;
+      color: #9ca3af;
+      padding: 25px;
+    }
+
+    .history-item {
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+      padding: 18px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+    }
+
+    .history-original {
+      font-size: 14px;
+      color: #4b5563;
+      word-break: break-all;
+      margin-bottom: 7px;
+    }
+
+    .history-short {
+      color: #2563eb;
+      font-weight: 700;
+      word-break: break-all;
+    }
+
+    /* ABOUT */
+    #about {
+      background: #f5f7fb;
+    }
+
+    .about-card {
+      max-width: 800px;
+      margin: auto;
+      background: #ffffff;
+      padding: 35px;
+      border-radius: 18px;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.04);
+    }
+
+    .about-card p {
+      color: #4b5563;
+      margin-bottom: 15px;
+    }
+
+    /* CONTACT */
+    #contact {
+      background: #ffffff;
+    }
+
+    .contact-card {
+      max-width: 650px;
+      margin: auto;
+      text-align: center;
+      padding: 35px;
+      border-radius: 18px;
+      background: #f8fafc;
+      border: 1px solid #e5e7eb;
+    }
+
+    .contact-card p {
+      color: #6b7280;
+      margin-bottom: 15px;
+    }
+
+    .email-link {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-weight: 700;
+    }
+
+    .email-link:hover {
+      background: #1d4ed8;
+    }
+
+    /* PRIVACY */
+    #privacy {
+      background: #f5f7fb;
+    }
+
+    .privacy-card {
+      max-width: 800px;
+      margin: auto;
+      background: #ffffff;
+      padding: 35px;
+      border-radius: 18px;
+      border: 1px solid #e5e7eb;
+    }
+
+    .privacy-card h3 {
+      margin: 22px 0 8px;
+      color: #111827;
+    }
+
+    .privacy-card h3:first-child {
+      margin-top: 0;
+    }
+
+    .privacy-card p {
+      color: #4b5563;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111827;
+      color: #d1d5db;
+      text-align: center;
+      padding: 30px 20px;
+    }
+
+    footer p {
+      font-size: 14px;
+    }
+
+    /* MOBILE */
+    @media (max-width: 700px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .hero {
+        min-height: 520px;
+        padding: 55px 15px;
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .shortener-box {
+        flex-direction: column;
+        padding: 10px;
+      }
+
+      #urlInput {
+        width: 100%;
+        min-height: 52px;
+      }
+
+      #shortenBtn {
+        width: 100%;
+      }
+
+      .result-row {
+        flex-direction: column;
+        align-items: stretch;
+      }
+
+      .result-btn {
+        width: 100%;
+      }
+
+      section {
+        padding: 60px 15px;
+      }
+
+      .about-card,
+      .privacy-card,
+      .contact-card {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="nav-container">
+
+      <a href="#home" class="logo">
+        URL Shorter
+      </a>
+
+      <nav>
+        <a href="#home">Home</a>
+        <a href="#historySection">History</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#privacy">Privacy</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- HOME -->
+  <main id="home">
+
+    <section class="hero">
+
+      <div class="hero-content">
+
+        <h1>
+          Make your URLs <span>shorter.</span>
+        </h1>
+
+        <p>
+          Create short, simple and easy-to-share links in seconds.
+        </p>
+
+        <div class="shortener-box">
+
+          <input
+            type="url"
+            id="urlInput"
+            placeholder="Enter your long URL..."
+            autocomplete="off"
+          >
+
+          <button id="shortenBtn">
+            Shorten URL
+          </button>
+
+        </div>
+
+        <div id="errorMessage"></div>
+
+        <div id="result">
+
+          <div class="result-title">
+            Your shortened URL
+          </div>
+
+          <div class="result-row">
+
+            <div id="shortUrl"></div>
+
+            <button
+              class="result-btn"
+              id="copyBtn"
+            >
+              Copy
+            </button>
+
+            <button
+              class="result-btn"
+              id="openBtn"
+            >
+              Open
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- HISTORY -->
+    <section id="historySection">
+
+      <div class="section-container">
+
+        <h2 class="section-title">
+          Recent Links
+        </h2>
+
+        <p class="section-description">
+          Your recently shortened links are saved on this device.
+        </p>
+
+        <div id="historyList"></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ABOUT -->
+    <section id="about">
+
+      <div class="section-container">
+
+        <h2 class="section-title">
+          About URL Shorter
+        </h2>
+
+        <p class="section-description">
+          A simple and fast tool for creating shorter URLs.
+        </p>
+
+        <div class="about-card">
+
+          <p>
+            URL Shorter helps you turn long web addresses into
+            shorter and easier-to-share links.
+          </p>
+
+          <p>
+            Just enter your URL, click the Shorten URL button,
+            and your short link will be generated instantly.
+          </p>
+
+          <p>
+            No account is required to use the basic URL shortening
+            service.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- CONTACT -->
+    <section id="contact">
+
+      <div class="section-container">
+
+        <h2 class="section-title">
+          Contact
+        </h2>
+
+        <p class="section-description">
+          Have a question or suggestion? Get in touch.
+        </p>
+
+        <div class="contact-card">
+
+          <p>
+            You can contact us using the email below.
+          </p>
+
+          <a
+            class="email-link"
+            href="mailto:adeeshayasas@icloud.com"
+          >
+            Email Us
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- PRIVACY -->
+    <section id="privacy">
+
+      <div class="section-container">
+
+        <h2 class="section-title">
+          Privacy Policy
+        </h2>
+
+        <p class="section-description">
+          Basic information about how this website works.
+        </p>
+
+        <div class="privacy-card">
+
+          <h3>
+            URL History
+          </h3>
+
+          <p>
+            Recently shortened links may be stored locally in
+            your browser using local storage. This information
+            stays on your device.
+          </p>
+
+          <h3>
+            No Account Required
+          </h3>
+
+          <p>
+            The basic URL shortening feature does not require
+            you to create an account or provide personal information.
+          </p>
+
+          <h3>
+            Third-Party Service
+          </h3>
+
+          <p>
+            URL shortening is handled through the is.gd
+            URL shortening service.
+          </p>
+
+          <h3>
+            Changes
+          </h3>
+
+          <p>
+            This privacy information may be updated when new
+            features are added to the website.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- FOOTER -->
+  <footer>
+
+    <p>
+      © 2026 URL Shorter. All rights reserved.
+    </p>
+
+  </footer>
+
+
+  <script>
+    const urlInput = document.getElementById("urlInput");
+    const shortenBtn = document.getElementById("shortenBtn");
+
+    const result = document.getElementById("result");
+    const shortUrl = document.getElementById("shortUrl");
+
+    const copyBtn = document.getElementById("copyBtn");
+    const openBtn = document.getElementById("openBtn");
+
+    const errorMessage = document.getElementById("errorMessage");
+    const historyList = document.getElementById("historyList");
+
+    const STORAGE_KEY = "urlShorterLinks";
+
+    let currentShortUrl = "";
+
+
+    /* URL VALIDATION */
+    function isValidURL(value) {
+      try {
+        const url = new URL(value);
+
+        return (
+          url.protocol === "http:" ||
+          url.protocol === "https:"
+        );
+      } catch {
+        return false;
+      }
+    }
+
+
+    /* ESCAPE HTML */
+    function escapeHTML(value) {
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+
+    /* SHOW ERROR */
+    function showError(message) {
+      errorMessage.textContent = message;
+      errorMessage.style.display = "block";
+    }
+
+
+    /* HIDE ERROR */
+    function hideError() {
+      errorMessage.textContent = "";
+      errorMessage.style.display = "none";
+    }
+
+
+    /* LOAD HISTORY */
+    function getHistory() {
+      try {
+        const data = localStorage.getItem(STORAGE_KEY);
+
+        if (!data) {
+          return [];
+        }
+
+        const parsed = JSON.parse(data);
+
+        return Array.isArray(parsed) ? parsed : [];
+
+      } catch {
+        return [];
+      }
+    }
+
+
+    /* SAVE HISTORY */
+    function saveHistory(originalURL, shortURL) {
+      const history = getHistory();
+
+      const newItem = {
+        original: originalURL,
+        short: shortURL,
+        time: Date.now()
+      };
+
+      const updatedHistory = [
+        newItem,
+        ...history.filter(item => item.short !== shortURL)
+      ].slice(0, 5);
+
+      localStorage.setItem(
+        STORAGE_KEY,
+        JSON.stringify(updatedHistory)
+      );
+
+      renderHistory();
+    }
+
+
+    /* RENDER HISTORY */
+    function renderHistory() {
+      const history = getHistory();
+
+      if (history.length === 0) {
+        historyList.innerHTML = `
+          <div class="history-empty">
+            No shortened links yet.
+          </div>
+        `;
+
+        return;
+      }
+
+      historyList.innerHTML = history
+        .map(item => `
+          <div class="history-item">
+
+            <div class="history-original">
+              ${escapeHTML(item.original)}
+            </div>
+
+            <a
+              class="history-short"
+              href="${escapeHTML(item.short)}"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              ${escapeHTML(item.short)}
+            </a>
+
+          </div>
+        `)
+        .join("");
+    }
+
+
+    /* IS.GD SHORTENER */
+    function shortenWithIsGd(originalURL) {
+
+      return new Promise((resolve, reject) => {
+
+        const callbackName =
+          "isgdCallback_" +
+          Date.now() +
+          "_" +
+          Math.floor(Math.random() * 100000);
+
+
+        const script = document.createElement("script");
+
+        let finished = false;
+
+
+        function cleanup() {
+
+          if (script.parentNode) {
+            script.parentNode.removeChild(script);
+          }
+
+          try {
+            delete window[callbackName];
+          } catch {
+            window[callbackName] = undefined;
+          }
+        }
+
+
+        function finishSuccess(shortURL) {
+
+          if (finished) return;
+
+          finished = true;
+
+          cleanup();
+
+          resolve(shortURL);
+        }
+
+
+        function finishError(message) {
+
+          if (finished) return;
+
+          finished = true;
+
+          cleanup();
+
+          reject(
+            new Error(
+              message || "Unable to shorten the URL."
+            )
+          );
+        }
+
+
+        window[callbackName] = function(data) {
+
+          if (data && data.shorturl) {
+
+            finishSuccess(data.shorturl);
+
+          } else {
+
+            finishError(
+              data && data.errormessage
+                ? data.errormessage
+                : "The shortening service returned an error."
+            );
+
+          }
+
+        };
+
+
+        script.src =
+          "https://is.gd/create.php" +
+          "?format=json" +
+          "&callback=" +
+          encodeURIComponent(callbackName) +
+          "&url=" +
+          encodeURIComponent(originalURL);
+
+
+        script.async = true;
+
+
+        script.onerror = function() {
+
+          finishError(
+            "Could not connect to the URL shortening service."
+          );
+
+        };
+
+
+        document.body.appendChild(script);
+
+
+        setTimeout(() => {
+
+          if (!finished) {
+
+            finishError(
+              "The request took too long. Please try again."
+            );
+
+          }
+
+        }, 15000);
+
+      });
+
+    }
+
+
+    /* SHORTEN URL */
+    async function shortenURL() {
+
+      const originalURL = urlInput.value.trim();
+
+      hideError();
+
+      result.style.display = "none";
+
+
+      if (!originalURL) {
+
+        showError(
+          "Please enter a URL."
+        );
+
+        urlInput.focus();
+
+        return;
+      }
+
+
+      if (!isValidURL(originalURL)) {
+
+        showError(
+          "Please enter a valid URL starting with http:// or https://"
+        );
+
+        urlInput.focus();
+
+        return;
+      }
+
+
+      shortenBtn.disabled = true;
+      shortenBtn.textContent = "Shortening...";
+
+
+      try {
+
+        const generatedURL =
+          await shortenWithIsGd(originalURL);
+
+
+        currentShortUrl = generatedURL;
+
+        shortUrl.textContent = generatedURL;
+
+        result.style.display = "block";
+
+
+        saveHistory(
+          originalURL,
+          generatedURL
+        );
+
+
+      } catch (error) {
+
+        showError(
+          error.message ||
+          "Something went wrong. Please try again."
+        );
+
+      } finally {
+
+        shortenBtn.disabled = false;
+        shortenBtn.textContent = "Shorten URL";
+
+      }
+
+    }
+
+
+    /* SHORTEN BUTTON */
+    shortenBtn.addEventListener(
+      "click",
+      shortenURL
+    );
+
+
+    /* ENTER KEY */
+    urlInput.addEventListener(
+      "keydown",
+      function(event) {
+
+        if (event.key === "Enter") {
+          shortenURL();
+        }
+
+      }
+    );
+
+
+    /* COPY BUTTON */
+    copyBtn.addEventListener(
+      "click",
+      async function() {
+
+        if (!currentShortUrl) {
+          return;
+        }
+
+
+        try {
+
+          await navigator.clipboard.writeText(
+            currentShortUrl
+          );
+
+          copyBtn.textContent = "Copied!";
+
+          setTimeout(() => {
+            copyBtn.textContent = "Copy";
+          }, 1500);
+
+
+        } catch {
+
+          showError(
+            "Could not copy the URL automatically."
+          );
+
+        }
+
+      }
+    );
+
+
+    /* OPEN BUTTON */
+    openBtn.addEventListener(
+      "click",
+      function() {
+
+        if (!currentShortUrl) {
+          return;
+        }
+
+        window.open(
+          currentShortUrl,
+          "_blank",
+          "noopener,noreferrer"
+        );
+
+      }
+    );
+
+
+    /* INITIAL LOAD */
+    renderHistory();
+
+  </script>
+
+</body>
+</html>  font-size:clamp(42px,8vw,75px);
   line-height:1.05;
   letter-spacing:-2px;
   margin-bottom:22px;
