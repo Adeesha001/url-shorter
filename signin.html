@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sign In - URL Shorter</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      background: #f5f7fb;
+      color: #172033;
+
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+
+    header {
+      background: #ffffff;
+      border-bottom: 1px solid #e5e7eb;
+    }
+
+    .header-inner {
+      max-width: 1100px;
+      margin: auto;
+      padding: 17px 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: #2563eb;
+      font-size: 22px;
+      font-weight: 800;
+      text-decoration: none;
+    }
+
+    .back-link {
+      color: #475569;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .back-link:hover {
+      color: #2563eb;
+    }
+
+    /* MAIN */
+
+    main {
+      flex: 1;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      padding: 40px 20px;
+
+      background:
+        radial-gradient(
+          circle at top right,
+          #dbeafe,
+          transparent 35%
+        ),
+        linear-gradient(
+          180deg,
+          #ffffff,
+          #f5f7fb
+        );
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 420px;
+
+      padding: 35px;
+
+      background: #ffffff;
+
+      border: 1px solid #e5e7eb;
+      border-radius: 18px;
+
+      box-shadow:
+        0 15px 40px rgba(15, 23, 42, 0.08);
+    }
+
+    .icon {
+      width: 55px;
+      height: 55px;
+
+      margin: 0 auto 18px;
+
+      border-radius: 50%;
+
+      background: #eff6ff;
+      color: #2563eb;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-size: 25px;
+    }
+
+    h1 {
+      text-align: center;
+
+      font-size: 30px;
+
+      color: #111827;
+
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      text-align: center;
+
+      color: #64748b;
+
+      font-size: 14px;
+
+      margin-bottom: 28px;
+    }
+
+    /* FORM */
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+
+      margin-bottom: 7px;
+
+      color: #334155;
+
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    input {
+      width: 100%;
+
+      padding: 14px 15px;
+
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+
+      outline: none;
+
+      background: #ffffff;
+
+      font-size: 15px;
+
+      transition: 0.2s;
+    }
+
+    input:focus {
+      border-color: #2563eb;
+
+      box-shadow:
+        0 0 0 3px rgba(37, 99, 235, 0.10);
+    }
+
+    .forgot {
+      display: block;
+
+      text-align: right;
+
+      margin-top: -8px;
+      margin-bottom: 20px;
+
+      color: #2563eb;
+
+      font-size: 13px;
+      font-weight: 600;
+
+      text-decoration: none;
+    }
+
+    .forgot:hover {
+      text-decoration: underline;
+    }
+
+    /* BUTTON */
+
+    .signin-btn {
+      width: 100%;
+
+      padding: 14px;
+
+      border: none;
+      border-radius: 10px;
+
+      background: #2563eb;
+      color: #ffffff;
+
+      font-size: 16px;
+      font-weight: 700;
+
+      cursor: pointer;
+
+      transition: 0.2s;
+    }
+
+    .signin-btn:hover {
+      background: #1d4ed8;
+    }
+
+    /* DIVIDER */
+
+    .divider {
+      display: flex;
+      align-items: center;
+
+      gap: 12px;
+
+      margin: 25px 0;
+
+      color: #94a3b8;
+
+      font-size: 13px;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: "";
+
+      flex: 1;
+
+      height: 1px;
+
+      background: #e2e8f0;
+    }
+
+    /* CREATE ACCOUNT */
+
+    .signup-text {
+      text-align: center;
+
+      color: #64748b;
+
+      font-size: 14px;
+    }
+
+    .signup-link {
+      color: #2563eb;
+
+      font-weight: 700;
+
+      text-decoration: none;
+    }
+
+    .signup-link:hover {
+      text-decoration: underline;
+    }
+
+    /* MESSAGE */
+
+    #message {
+      display: none;
+
+      margin-bottom: 18px;
+
+      padding: 11px 13px;
+
+      border-radius: 9px;
+
+      font-size: 13px;
+
+      text-align: center;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 22px 20px;
+
+      background: #111827;
+
+      color: #d1d5db;
+
+      text-align: center;
+
+      font-size: 12px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 500px) {
+
+      .login-card {
+        padding: 28px 20px;
+      }
+
+      h1 {
+        font-size: 27px;
+      }
+
+      .header-inner {
+        padding: 15px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header>
+
+    <div class="header-inner">
+
+      <a href="index.html" class="logo">
+        URL Shorter
+      </a>
+
+      <a href="index.html" class="back-link">
+        ← Back to Home
+      </a>
+
+    </div>
+
+  </header>
+
+
+  <!-- LOGIN -->
+
+  <main>
+
+    <div class="login-card">
+
+      <div class="icon">
+        🔐
+      </div>
+
+      <h1>
+        Welcome Back
+      </h1>
+
+      <p class="subtitle">
+        Sign in to your URL Shorter account.
+      </p>
+
+
+      <div id="message"></div>
+
+
+      <form id="loginForm">
+
+        <div class="form-group">
+
+          <label for="email">
+            Email
+          </label>
+
+          <input
+            type="email"
+            id="email"
+            placeholder="Enter your email"
+            required
+          >
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label for="password">
+            Password
+          </label>
+
+          <input
+            type="password"
+            id="password"
+            placeholder="Enter your password"
+            required
+          >
+
+        </div>
+
+
+        <a href="#" class="forgot" id="forgotPassword">
+          Forgot password?
+        </a>
+
+
+        <button
+          type="submit"
+          class="signin-btn"
+        >
+          Sign In
+        </button>
+
+      </form>
+
+
+      <div class="divider">
+        OR
+      </div>
+
+
+      <p class="signup-text">
+
+        Don't have an account?
+
+        <a
+          href="#"
+          class="signup-link"
+          id="createAccount"
+        >
+          Create Account
+        </a>
+
+      </p>
+
+    </div>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+    © 2026 URL Shorter. All rights reserved.
+  </footer>
+
+
+  <script>
+
+    const loginForm =
+      document.getElementById("loginForm");
+
+    const message =
+      document.getElementById("message");
+
+    const createAccount =
+      document.getElementById("createAccount");
+
+    const forgotPassword =
+      document.getElementById("forgotPassword");
+
+
+    function showMessage(
+      text,
+      type
+    ) {
+
+      message.textContent = text;
+
+      message.style.display = "block";
+
+      if (type === "error") {
+
+        message.style.background =
+          "#fef2f2";
+
+        message.style.color =
+          "#b91c1c";
+
+      } else {
+
+        message.style.background =
+          "#eff6ff";
+
+        message.style.color =
+          "#1d4ed8";
+
+      }
+
+    }
+
+
+    loginForm.addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+        showMessage(
+          "Sign in will be connected soon.",
+          "info"
+        );
+
+      }
+    );
+
+
+    createAccount.addEventListener(
+      "click",
+      function(event) {
+
+        event.preventDefault();
+
+        showMessage(
+          "Create Account will be added next.",
+          "info"
+        );
+
+      }
+    );
+
+
+    forgotPassword.addEventListener(
+      "click",
+      function(event) {
+
+        event.preventDefault();
+
+        showMessage(
+          "Password recovery will be connected soon.",
+          "info"
+        );
+
+      }
+    );
+
+  </script>
+
+</body>
+</html>
