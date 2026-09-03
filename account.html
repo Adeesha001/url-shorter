@@ -7,6 +7,7 @@
   <title>Account - URL Shorter</title>
 
   <style>
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -57,8 +58,8 @@
     }
 
     .container {
-      max-width: 600px;
-      margin: 60px auto;
+      max-width: 700px;
+      margin: 50px auto;
       padding: 20px;
     }
 
@@ -67,7 +68,9 @@
       border: 1px solid #e2e8f0;
       border-radius: 18px;
       padding: 35px;
-      box-shadow: 0 15px 40px rgba(15, 23, 42, 0.08);
+
+      box-shadow:
+        0 15px 40px rgba(15, 23, 42, 0.08);
     }
 
     .avatar {
@@ -104,6 +107,7 @@
       background: #f8fafc;
       border: 1px solid #e2e8f0;
       border-radius: 12px;
+
       padding: 18px;
       margin-bottom: 20px;
     }
@@ -111,7 +115,9 @@
     .info-label {
       font-size: 12px;
       color: #94a3b8;
+
       margin-bottom: 5px;
+
       font-weight: 700;
       text-transform: uppercase;
     }
@@ -120,11 +126,202 @@
       color: #111827;
       font-size: 16px;
       font-weight: 600;
+
       word-break: break-all;
     }
 
-    button {
+    /* =========================================
+       HISTORY HEADER
+    ========================================= */
+
+    .history-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      margin-top: 30px;
+      margin-bottom: 15px;
+    }
+
+    .history-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: #111827;
+    }
+
+    .refresh-btn {
+      width: auto;
+
+      padding: 8px 12px;
+
+      background: #eff6ff;
+      color: #2563eb;
+
+      border: 1px solid #bfdbfe;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+    }
+
+    .refresh-btn:hover {
+      background: #dbeafe;
+    }
+
+    /* =========================================
+       HISTORY
+    ========================================= */
+
+    .history {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .history-item {
+      background: #f8fafc;
+
+      border: 1px solid #e2e8f0;
+
+      border-radius: 12px;
+
+      padding: 16px;
+    }
+
+    .original-url {
+      font-size: 13px;
+      color: #64748b;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      margin-bottom: 8px;
+    }
+
+    .short-url {
+      color: #2563eb;
+
+      font-size: 15px;
+      font-weight: 700;
+
+      word-break: break-all;
+
+      margin-bottom: 7px;
+    }
+
+    .created-date {
+      color: #94a3b8;
+      font-size: 12px;
+
+      margin-bottom: 13px;
+    }
+
+    .history-actions {
+      display: flex;
+      gap: 8px;
+    }
+
+    .action-btn {
+      width: auto;
+      flex: 1;
+
+      padding: 9px 10px;
+
+      border-radius: 8px;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      border: 1px solid #e2e8f0;
+
+      cursor: pointer;
+    }
+
+    .copy-btn {
+      background: #ffffff;
+      color: #2563eb;
+    }
+
+    .copy-btn:hover {
+      background: #eff6ff;
+    }
+
+    .open-btn {
+      background: #2563eb;
+      color: #ffffff;
+      border-color: #2563eb;
+    }
+
+    .open-btn:hover {
+      background: #1d4ed8;
+    }
+
+    .delete-btn {
+      background: #ffffff;
+      color: #dc2626;
+    }
+
+    .delete-btn:hover {
+      background: #fef2f2;
+    }
+
+    /* =========================================
+       EMPTY / LOADING
+    ========================================= */
+
+    .history-message {
+      text-align: center;
+
+      padding: 25px 15px;
+
+      color: #94a3b8;
+
+      font-size: 14px;
+    }
+
+    /* =========================================
+       ERROR
+    ========================================= */
+
+    .message {
+      display: none;
+
+      margin-bottom: 18px;
+
+      padding: 12px;
+
+      border-radius: 9px;
+
+      text-align: center;
+
+      font-size: 14px;
+    }
+
+    .error {
+      display: block;
+
+      background: #fef2f2;
+      color: #b91c1c;
+    }
+
+    .success {
+      display: block;
+
+      background: #f0fdf4;
+      color: #15803d;
+    }
+
+    /* =========================================
+       SIGN OUT
+    ========================================= */
+
+    .signout-btn {
       width: 100%;
+
       border: none;
       border-radius: 10px;
 
@@ -137,34 +334,32 @@
       font-weight: 700;
 
       cursor: pointer;
+
+      margin-top: 25px;
     }
 
-    button:hover {
+    .signout-btn:hover {
       background: #000000;
     }
 
-    .message {
-      display: none;
-      margin-bottom: 18px;
-      padding: 12px;
-      border-radius: 9px;
-
-      text-align: center;
-      font-size: 14px;
-    }
-
-    .error {
-      display: block;
-      background: #fef2f2;
-      color: #b91c1c;
+    .signout-btn:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
     }
 
     footer {
       text-align: center;
+
       padding: 30px 20px;
+
       color: #94a3b8;
+
       font-size: 12px;
     }
+
+    /* =========================================
+       MOBILE
+    ========================================= */
 
     @media (max-width: 600px) {
 
@@ -173,7 +368,7 @@
       }
 
       .container {
-        margin: 35px auto;
+        margin: 30px auto;
         padding: 15px;
       }
 
@@ -181,13 +376,30 @@
         padding: 28px 20px;
       }
 
+      .history-actions {
+        flex-direction: column;
+      }
+
+      .action-btn {
+        width: 100%;
+      }
+
+      .history-header {
+        align-items: center;
+      }
+
     }
+
   </style>
 </head>
 
+
 <body>
 
-  <!-- HEADER -->
+
+  <!-- =========================================
+       HEADER
+  ========================================= -->
 
   <header>
 
@@ -206,30 +418,39 @@
   </header>
 
 
-  <!-- ACCOUNT -->
+  <!-- =========================================
+       ACCOUNT
+  ========================================= -->
 
   <main class="container">
 
     <div class="card">
 
+
       <div class="avatar">
         👤
       </div>
 
+
       <h1>
         My Account
       </h1>
+
 
       <p class="subtitle">
         Your URL Shorter account
       </p>
 
 
+      <!-- MESSAGE -->
+
       <div
-        id="errorMessage"
+        id="message"
         class="message"
       ></div>
 
+
+      <!-- EMAIL -->
 
       <div class="info-box">
 
@@ -247,21 +468,69 @@
       </div>
 
 
-      <button id="signOutBtn">
+      <!-- =====================================
+           HISTORY HEADER
+      ====================================== -->
+
+      <div class="history-header">
+
+        <div class="history-title">
+          My URL History
+        </div>
+
+        <button
+          class="refresh-btn"
+          id="refreshBtn"
+        >
+          🔄 Refresh
+        </button>
+
+      </div>
+
+
+      <!-- HISTORY -->
+
+      <div
+        class="history"
+        id="history"
+      >
+
+        <div class="history-message">
+          Loading your URLs...
+        </div>
+
+      </div>
+
+
+      <!-- SIGN OUT -->
+
+      <button
+        class="signout-btn"
+        id="signOutBtn"
+      >
         Sign Out
       </button>
+
 
     </div>
 
   </main>
 
 
+  <!-- =========================================
+       FOOTER
+  ========================================= -->
+
   <footer>
+
     URL Shorter • Simple. Fast. Shareable.
+
   </footer>
 
 
-  <!-- SUPABASE -->
+  <!-- =========================================
+       SUPABASE
+  ========================================= -->
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
@@ -269,7 +538,7 @@
   <script>
 
     /* =========================================
-       SUPABASE
+       SUPABASE CONFIG
     ========================================= */
 
     const SUPABASE_URL =
@@ -286,9 +555,23 @@
       );
 
 
+    /* =========================================
+       ELEMENTS
+    ========================================= */
+
     const userEmail =
       document.getElementById(
         "userEmail"
+      );
+
+    const history =
+      document.getElementById(
+        "history"
+      );
+
+    const refreshBtn =
+      document.getElementById(
+        "refreshBtn"
       );
 
     const signOutBtn =
@@ -296,17 +579,98 @@
         "signOutBtn"
       );
 
-    const errorMessage =
+    const message =
       document.getElementById(
-        "errorMessage"
+        "message"
       );
 
 
     /* =========================================
-       LOAD USER
+       SHOW MESSAGE
+    ========================================= */
+
+    function showMessage(
+      text,
+      type = "error"
+    ) {
+
+      message.textContent =
+        text;
+
+      message.className =
+        "message " + type;
+
+    }
+
+
+    function hideMessage() {
+
+      message.textContent = "";
+
+      message.className =
+        "message";
+
+    }
+
+
+    /* =========================================
+       LOAD ACCOUNT
     ========================================= */
 
     async function loadAccount() {
+
+      const {
+        data: { session },
+        error
+      } =
+        await supabaseClient.auth.getSession();
+
+
+      if (error) {
+
+        showMessage(
+          error.message
+        );
+
+        return;
+
+      }
+
+
+      if (
+        !session ||
+        !session.user
+      ) {
+
+        window.location.href =
+          "signin.html";
+
+        return;
+
+      }
+
+
+      userEmail.textContent =
+        session.user.email;
+
+
+      loadHistory();
+
+    }
+
+
+    /* =========================================
+       LOAD URL HISTORY
+    ========================================= */
+
+    async function loadHistory() {
+
+      history.innerHTML = `
+        <div class="history-message">
+          Loading your URLs...
+        </div>
+      `;
+
 
       const {
         data: { session }
@@ -327,10 +691,394 @@
       }
 
 
-      userEmail.textContent =
-        session.user.email;
+      const {
+        data,
+        error
+      } =
+        await supabaseClient
+
+          .from("shortened_urls")
+
+          .select(
+            "id, original_url, short_url, created_at"
+          )
+
+          .eq(
+            "user_id",
+            session.user.id
+          )
+
+          .order(
+            "created_at",
+            {
+              ascending: false
+            }
+          );
+
+
+      if (error) {
+
+        history.innerHTML = `
+          <div class="history-message">
+            Unable to load your URL history.
+          </div>
+        `;
+
+        showMessage(
+          error.message
+        );
+
+        return;
+
+      }
+
+
+      hideMessage();
+
+
+      if (
+        !data ||
+        data.length === 0
+      ) {
+
+        history.innerHTML = `
+          <div class="history-message">
+            🔗 You haven't shortened any URLs yet.
+          </div>
+        `;
+
+        return;
+
+      }
+
+
+      history.innerHTML = "";
+
+
+      data.forEach(function(item) {
+
+        const historyItem =
+          document.createElement(
+            "div"
+          );
+
+        historyItem.className =
+          "history-item";
+
+
+        /* ORIGINAL URL */
+
+        const originalURL =
+          document.createElement(
+            "div"
+          );
+
+        originalURL.className =
+          "original-url";
+
+        originalURL.textContent =
+          item.original_url;
+
+
+        /* SHORT URL */
+
+        const shortURL =
+          document.createElement(
+            "div"
+          );
+
+        shortURL.className =
+          "short-url";
+
+        shortURL.textContent =
+          item.short_url;
+
+
+        /* DATE */
+
+        const createdDate =
+          document.createElement(
+            "div"
+          );
+
+        createdDate.className =
+          "created-date";
+
+
+        const date =
+          new Date(
+            item.created_at
+          );
+
+
+        createdDate.textContent =
+          "Created: " +
+          date.toLocaleString();
+
+
+        /* ACTIONS */
+
+        const actions =
+          document.createElement(
+            "div"
+          );
+
+        actions.className =
+          "history-actions";
+
+
+        /* COPY */
+
+        const copyBtn =
+          document.createElement(
+            "button"
+          );
+
+        copyBtn.className =
+          "action-btn copy-btn";
+
+        copyBtn.textContent =
+          "📋 Copy";
+
+
+        copyBtn.addEventListener(
+          "click",
+          async function() {
+
+            try {
+
+              await navigator.clipboard.writeText(
+                item.short_url
+              );
+
+              copyBtn.textContent =
+                "✅ Copied!";
+
+
+              setTimeout(
+                function() {
+
+                  copyBtn.textContent =
+                    "📋 Copy";
+
+                },
+                1500
+              );
+
+            } catch (error) {
+
+              showMessage(
+                "Unable to copy the URL."
+              );
+
+            }
+
+          }
+        );
+
+
+        /* OPEN */
+
+        const openBtn =
+          document.createElement(
+            "button"
+          );
+
+        openBtn.className =
+          "action-btn open-btn";
+
+        openBtn.textContent =
+          "🔗 Open";
+
+
+        openBtn.addEventListener(
+          "click",
+          function() {
+
+            window.open(
+              item.short_url,
+              "_blank"
+            );
+
+          }
+        );
+
+
+        /* DELETE */
+
+        const deleteBtn =
+          document.createElement(
+            "button"
+          );
+
+        deleteBtn.className =
+          "action-btn delete-btn";
+
+        deleteBtn.textContent =
+          "🗑️ Delete";
+
+
+        deleteBtn.addEventListener(
+          "click",
+          function() {
+
+            deleteURL(
+              item.id,
+              historyItem
+            );
+
+          }
+        );
+
+
+        actions.appendChild(
+          copyBtn
+        );
+
+        actions.appendChild(
+          openBtn
+        );
+
+        actions.appendChild(
+          deleteBtn
+        );
+
+
+        historyItem.appendChild(
+          originalURL
+        );
+
+        historyItem.appendChild(
+          shortURL
+        );
+
+        historyItem.appendChild(
+          createdDate
+        );
+
+        historyItem.appendChild(
+          actions
+        );
+
+
+        history.appendChild(
+          historyItem
+        );
+
+      });
 
     }
+
+
+    /* =========================================
+       DELETE URL
+    ========================================= */
+
+    async function deleteURL(
+      id,
+      element
+    ) {
+
+      const confirmed =
+        confirm(
+          "Delete this URL from your history?"
+        );
+
+
+      if (!confirmed) {
+        return;
+      }
+
+
+      const deleteBtn =
+        element.querySelector(
+          ".delete-btn"
+        );
+
+
+      deleteBtn.disabled =
+        true;
+
+      deleteBtn.textContent =
+        "Deleting...";
+
+
+      const {
+        error
+      } =
+        await supabaseClient
+
+          .from("shortened_urls")
+
+          .delete()
+
+          .eq(
+            "id",
+            id
+          );
+
+
+      if (error) {
+
+        showMessage(
+          error.message
+        );
+
+        deleteBtn.disabled =
+          false;
+
+        deleteBtn.textContent =
+          "🗑️ Delete";
+
+        return;
+
+      }
+
+
+      element.remove();
+
+
+      if (
+        history.children.length === 0
+      ) {
+
+        history.innerHTML = `
+          <div class="history-message">
+            🔗 You haven't shortened any URLs yet.
+          </div>
+        `;
+
+      }
+
+    }
+
+
+    /* =========================================
+       REFRESH
+    ========================================= */
+
+    refreshBtn.addEventListener(
+      "click",
+      async function() {
+
+        refreshBtn.disabled =
+          true;
+
+        refreshBtn.textContent =
+          "⏳ Loading...";
+
+
+        await loadHistory();
+
+
+        refreshBtn.disabled =
+          false;
+
+        refreshBtn.textContent =
+          "🔄 Refresh";
+
+      }
+    );
 
 
     /* =========================================
@@ -348,17 +1096,17 @@
           "Signing out...";
 
 
-        const { error } =
+        const {
+          error
+        } =
           await supabaseClient.auth.signOut();
 
 
         if (error) {
 
-          errorMessage.textContent =
-            error.message;
-
-          errorMessage.className =
-            "message error";
+          showMessage(
+            error.message
+          );
 
           signOutBtn.disabled =
             false;
