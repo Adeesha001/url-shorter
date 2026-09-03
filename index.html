@@ -34,7 +34,6 @@
       color: inherit;
     }
 
-    /* Header */
     header {
       background: #ffffff;
       border-bottom: 1px solid #e5e7eb;
@@ -47,7 +46,6 @@
       max-width: 1100px;
       margin: auto;
       padding: 16px 20px;
-
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -74,7 +72,6 @@
       color: #2563eb;
     }
 
-    /* Hero */
     .hero {
       min-height: 570px;
       display: flex;
@@ -125,7 +122,6 @@
       font-size: 17px;
     }
 
-    /* Shortener */
     .shortener-box {
       max-width: 780px;
       margin: auto;
@@ -185,7 +181,6 @@
       cursor: not-allowed;
     }
 
-    /* Error */
     #errorMessage {
       display: none;
 
@@ -204,7 +199,6 @@
       text-align: left;
     }
 
-    /* Result */
     #result {
       display: none;
 
@@ -271,7 +265,6 @@
       background: #111827;
     }
 
-    /* Sections */
     section {
       padding: 75px 20px;
     }
@@ -295,7 +288,6 @@
       color: #64748b;
     }
 
-    /* History */
     #history {
       background: #ffffff;
     }
@@ -337,7 +329,6 @@
       word-break: break-all;
     }
 
-    /* About */
     #about {
       background: #f5f7fb;
     }
@@ -363,7 +354,6 @@
       margin-bottom: 0;
     }
 
-    /* Contact */
     #contact {
       background: #ffffff;
     }
@@ -393,7 +383,6 @@
       word-break: break-all;
     }
 
-    /* Privacy */
     #privacy {
       background: #f5f7fb;
     }
@@ -414,7 +403,6 @@
       color: #475569;
     }
 
-    /* Footer */
     footer {
       background: #111827;
       color: #d1d5db;
@@ -438,7 +426,6 @@
       font-size: 12px;
     }
 
-    /* Mobile */
     @media (max-width: 700px) {
 
       .nav-container {
@@ -516,11 +503,9 @@
         <a href="#contact">Contact</a>
         <a href="#privacy">Privacy</a>
 
-        <!-- AUTH LINK -->
         <a href="signin.html" id="authLink">
           Sign In
         </a>
-
       </nav>
 
     </div>
@@ -685,8 +670,9 @@
 
         <p>
           This website stores recent shortened-link history
-          locally in your browser. We do not intentionally
-          collect personal information through this page.
+          locally in your browser. Logged-in users may also
+          have their shortened links saved securely in Supabase
+          so they can access their history from their account.
         </p>
 
       </div>
@@ -772,15 +758,9 @@
     }
 
 
-    /*
-      Listen for login/logout changes
-    */
-
     supabaseClient.auth.onAuthStateChange(
       function() {
-
         updateAuthLink();
-
       }
     );
 
@@ -889,7 +869,7 @@
 
 
     /* =========================================
-       HISTORY
+       LOCAL HISTORY
     ========================================= */
 
     function getHistory() {
@@ -902,9 +882,7 @@
           );
 
         if (!data) {
-
           return [];
-
         }
 
         const parsed =
@@ -923,7 +901,7 @@
     }
 
 
-    function saveHistory(
+    function saveLocalHistory(
       originalURL,
       shortURL
     ) {
@@ -965,11 +943,71 @@
         )
       );
 
+    }
 
-      renderHistory();
+
+    /* =========================================
+       SUPABASE HISTORY
+    ========================================= */
+
+    async function saveSupabaseHistory(
+      originalURL,
+      shortURL
+    ) {
+
+      const {
+        data: { session },
+        error: sessionError
+      } =
+        await supabaseClient.auth.getSession();
+
+
+      if (sessionError) {
+
+        console.error(
+          "Session error:",
+          sessionError
+        );
+
+        return;
+
+      }
+
+
+      if (!session || !session.user) {
+
+        return;
+
+      }
+
+
+      const {
+        error
+      } =
+        await supabaseClient
+          .from("shortened_urls")
+          .insert({
+            user_id: session.user.id,
+            original_url: originalURL,
+            short_url: shortURL
+          });
+
+
+      if (error) {
+
+        console.error(
+          "Supabase save error:",
+          error
+        );
+
+      }
 
     }
 
+
+    /* =========================================
+       RENDER LOCAL HISTORY
+    ========================================= */
 
     function renderHistory() {
 
@@ -1266,10 +1304,21 @@
           "block";
 
 
-        saveHistory(
+        /* Save locally */
+        saveLocalHistory(
           originalURL,
           generatedURL
         );
+
+
+        /* Save to Supabase if logged in */
+        await saveSupabaseHistory(
+          originalURL,
+          generatedURL
+        );
+
+
+        renderHistory();
 
 
       } catch (error) {
@@ -1329,9 +1378,7 @@
       async function() {
 
         if (!currentShortUrl) {
-
           return;
-
         }
 
 
@@ -1378,9 +1425,7 @@
       function() {
 
         if (!currentShortUrl) {
-
           return;
-
         }
 
 
