@@ -511,11 +511,16 @@
       </a>
 
       <nav>
-  <a href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#contact">Contact</a>
-  <a href="#privacy">Privacy</a>
-  <a href="signin.html">Sign In</a>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="#privacy">Privacy</a>
+
+        <!-- AUTH LINK -->
+        <a href="signin.html" id="authLink">
+          Sign In
+        </a>
+
       </nav>
 
     </div>
@@ -707,7 +712,82 @@
   </footer>
 
 
+  <!-- SUPABASE LIBRARY -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
   <script>
+
+    /* =========================================
+       SUPABASE
+    ========================================= */
+
+    const SUPABASE_URL =
+      "https://efxpwizkfuxsjaeehapp.supabase.co";
+
+    const SUPABASE_PUBLISHABLE_KEY =
+      "sb_publishable_p2wQ_Cvk37BFIZKa4P6d9Q_WZg2rZ8i";
+
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_PUBLISHABLE_KEY
+      );
+
+
+    /* =========================================
+       AUTH LINK
+    ========================================= */
+
+    const authLink =
+      document.getElementById("authLink");
+
+
+    async function updateAuthLink() {
+
+      const {
+        data: { session }
+      } =
+        await supabaseClient.auth.getSession();
+
+
+      if (session && session.user) {
+
+        authLink.textContent =
+          "👤 Account";
+
+        authLink.href =
+          "account.html";
+
+      } else {
+
+        authLink.textContent =
+          "Sign In";
+
+        authLink.href =
+          "signin.html";
+
+      }
+
+    }
+
+
+    /*
+      Listen for login/logout changes
+    */
+
+    supabaseClient.auth.onAuthStateChange(
+      function() {
+
+        updateAuthLink();
+
+      }
+    );
+
+
+    /* =========================================
+       URL SHORTENER
+    ========================================= */
 
     const urlInput =
       document.getElementById("urlInput");
@@ -741,13 +821,16 @@
     let currentShortUrl = "";
 
 
-    /* URL VALIDATION */
+    /* =========================================
+       URL VALIDATION
+    ========================================= */
 
     function isValidURL(value) {
 
       try {
 
-        const url = new URL(value);
+        const url =
+          new URL(value);
 
         return (
           url.protocol === "http:" ||
@@ -763,7 +846,9 @@
     }
 
 
-    /* ESCAPE HTML */
+    /* =========================================
+       ESCAPE HTML
+    ========================================= */
 
     function escapeHTML(value) {
 
@@ -777,7 +862,9 @@
     }
 
 
-    /* ERROR */
+    /* =========================================
+       ERROR
+    ========================================= */
 
     function showError(message) {
 
@@ -792,7 +879,8 @@
 
     function hideError() {
 
-      errorMessage.textContent = "";
+      errorMessage.textContent =
+        "";
 
       errorMessage.style.display =
         "none";
@@ -800,7 +888,9 @@
     }
 
 
-    /* HISTORY */
+    /* =========================================
+       HISTORY
+    ========================================= */
 
     function getHistory() {
 
@@ -812,7 +902,9 @@
           );
 
         if (!data) {
+
           return [];
+
         }
 
         const parsed =
@@ -842,11 +934,14 @@
 
       const newItem = {
 
-        original: originalURL,
+        original:
+          originalURL,
 
-        short: shortURL,
+        short:
+          shortURL,
 
-        time: Date.now()
+        time:
+          Date.now()
 
       };
 
@@ -926,7 +1021,9 @@
     }
 
 
-    /* IS.GD */
+    /* =========================================
+       IS.GD
+    ========================================= */
 
     function shortenWithIsGd(
       originalURL
@@ -950,7 +1047,8 @@
             );
 
 
-          let finished = false;
+          let finished =
+            false;
 
 
           function cleanup() {
@@ -962,6 +1060,7 @@
               );
 
             }
+
 
             try {
 
@@ -990,7 +1089,9 @@
 
             cleanup();
 
-            resolve(shortURL);
+            resolve(
+              shortURL
+            );
 
           }
 
@@ -1054,7 +1155,8 @@
             );
 
 
-          script.async = true;
+          script.async =
+            true;
 
 
           script.onerror =
@@ -1093,7 +1195,9 @@
     }
 
 
-    /* SHORTEN */
+    /* =========================================
+       SHORTEN
+    ========================================= */
 
     async function shortenURL() {
 
@@ -1102,6 +1206,7 @@
 
 
       hideError();
+
 
       result.style.display =
         "none";
@@ -1133,7 +1238,9 @@
       }
 
 
-      shortenBtn.disabled = true;
+      shortenBtn.disabled =
+        true;
+
 
       shortenBtn.textContent =
         "Shortening...";
@@ -1185,7 +1292,9 @@
     }
 
 
-    /* BUTTON */
+    /* =========================================
+       BUTTON
+    ========================================= */
 
     shortenBtn.addEventListener(
       "click",
@@ -1193,7 +1302,9 @@
     );
 
 
-    /* ENTER */
+    /* =========================================
+       ENTER KEY
+    ========================================= */
 
     urlInput.addEventListener(
       "keydown",
@@ -1209,14 +1320,18 @@
     );
 
 
-    /* COPY */
+    /* =========================================
+       COPY
+    ========================================= */
 
     copyBtn.addEventListener(
       "click",
       async function() {
 
         if (!currentShortUrl) {
+
           return;
+
         }
 
 
@@ -1254,14 +1369,18 @@
     );
 
 
-    /* OPEN */
+    /* =========================================
+       OPEN
+    ========================================= */
 
     openBtn.addEventListener(
       "click",
       function() {
 
         if (!currentShortUrl) {
+
           return;
+
         }
 
 
@@ -1275,9 +1394,13 @@
     );
 
 
-    /* LOAD */
+    /* =========================================
+       LOAD
+    ========================================= */
 
     renderHistory();
+
+    updateAuthLink();
 
   </script>
 
